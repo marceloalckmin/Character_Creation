@@ -9,10 +9,11 @@ public class ServerDAO extends ConectionDAO{
     boolean sucesso = false; //Para saber se funcionou
     public boolean inserirSevers(Servers s) {
         connectToDB();
-        String sql = "INSERT INTO Servers (Regiao) values(?)";
+        String sql = "INSERT INTO Servers (idServers,Regiao) values(?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, s.regiao);
+            pst.setInt(1, s.idServers);
+            pst.setString(2,s.regiao);
             pst.execute();
             sucesso = true;
         } catch(SQLException exc) {

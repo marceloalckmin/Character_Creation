@@ -73,7 +73,7 @@ public class Main {
         a4.forca = 0;
         a4.destreza = 30;
         a4.inteligencia = 0;
-        a4.classe= "Fumante";
+        a4.classe= "Ratazana";
         a4.Player_idPlayer = p2.idPlayer;
         aDao.inserirAvatar(a4);
         a6.idAvatar = 4;
@@ -91,6 +91,7 @@ public class Main {
         tDao.inserirToken(t2);
         s1.regiao = "Brasil";
         sDao.inserirSevers(s1);
+        s2.idServers = 1;
         s2.regiao = "USA";
         sDao.inserirSevers(s2);
 
@@ -180,14 +181,21 @@ public class Main {
                     System.out.println( "Caso seja necessário um moderador lhe pedirá este código");
                     System.out.println(" e se o número dado ao moderador condizer com um numero presente no banco de dados");
                     System.out.println(" ele realizará a ação necessária para a recuperação de sua conta");
-                    System.out.println(" Entre com o token escolhido: ");
+                    System.out.print(" Entre com o token escolhido: ");
                     tAux.token= entrada.nextInt();
+                    System.out.print("Digite o ID do jogador no qual o token ficará vinculado à conta:");
+                    tAux.Player_idPlayer = entrada.nextInt();
+                    //id do token será registrado como id do proprio jogador para não haver 2 tokens com o mesmo id
+                    //já que só haverá 1 token por jogador
+                    tAux.idToken = tAux.Player_idPlayer;
                     tDao.inserirToken(tAux);
                     break;
                 //Criação de Server
                 case 4:
                     Servers sAux = new Servers();
+                    System.out.print("Digite o ID do server a ser adicionado: ");
                     sAux.idServers = entrada.nextInt();
+                    System.out.print("Digite o nome da região do servidor: ");
                     sAux.regiao = entrada.nextLine();
                     sDao.inserirSevers(sAux);
                     break;
@@ -240,8 +248,6 @@ public class Main {
                     a7.destreza = entrada.nextInt();
                     System.out.print("Inteligência: ");
                     a7.inteligencia = entrada.nextInt();
-                    //CASO DÊ PROBLEMA EM QUALQUER UM, SEGUIR O EXEMPLO ABAIXO NESSA PORRA\/\/\/\/\/\/\/\/\/\/\/
-                   //                                                               a7.Player_idPlayer = pAux.idPlayer;
                     System.out.println("Pronto, avatar atualizado!");
                     aDao.atualizarAvatar(idAv,a7);
 
@@ -255,8 +261,11 @@ public class Main {
                 case 11:
                     Servers s3 = new Servers();
                     //id do server a ser atualizado
+                    System.out.println("Digite o ID do server a ser atualizado: ");
                     int idsv = entrada.nextInt();
                     //regiao a ser atualizada no server
+                    System.out.println("Qual a região correta desse servidor?");
+                    entrada.nextLine();
                     s3.regiao = entrada.nextLine();
                     sDao.atualizarServers(idsv,s3);
                     break;
@@ -265,11 +274,6 @@ public class Main {
             }
 
         }
-
-
-
-
-
     }
     }
 

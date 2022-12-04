@@ -7,10 +7,12 @@ public class TokenDAO extends ConectionDAO{
     boolean sucesso = false; //Para saber se funcionou
     public boolean inserirToken(Token t) {
         connectToDB();
-        String sql = "INSERT INTO Token (token) values(?)";
+        String sql = "INSERT INTO Token (idToken,token,Player_idPlayer) values(?,?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, t.token);
+            pst.setInt(1, t.idToken);
+            pst.setInt(2, t.token);
+            pst.setInt(3, t.Player_idPlayer);
             pst.execute();
             sucesso = true;
         } catch(SQLException exc) {

@@ -11,7 +11,7 @@ public class AvatarDAO extends ConectionDAO{
     boolean sucesso = false; //Para saber se funcionou
     public boolean inserirAvatar(Avatar p) {
         connectToDB();
-        String sql = "INSERT INTO Avatar (idAvatar,nome,raca,classe,forca,destreza,inteligencia,Player_idPlayer) values(?,?,?,?,?,   ?,?,?)";
+        String sql = "INSERT INTO Avatar (idAvatar,nome,raca,classe,forca,destreza,inteligencia,Player_idPlayer) values(?,?,?,?,?,?,?,?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, p.idAvatar);
