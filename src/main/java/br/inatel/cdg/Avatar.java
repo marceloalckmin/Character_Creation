@@ -11,4 +11,14 @@ public class Avatar {
     public String classe;
     public int Player_idPlayer;
 
+    public void mostraInfo(){
+        System.out.println(this.idAvatar);
+        System.out.println(this.nome);
+        System.out.println(this.raca);
+        System.out.println(this.forca);
+        System.out.println(this.destreza);
+        System.out.println(this.inteligencia);
+        System.out.println(this.classe);
+        System.out.println(this.Player_idPlayer);
+    }
 }

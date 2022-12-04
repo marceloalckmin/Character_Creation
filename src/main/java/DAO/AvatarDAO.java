@@ -11,7 +11,7 @@ public class AvatarDAO extends ConectionDAO{
     boolean sucesso = false; //Para saber se funcionou
     public boolean inserirAvatar(Avatar p) {
         connectToDB();
-        String sql = "INSERT INTO Avatar (idAvatar,nome,raca,classe,forca,inteligencia,destreza,Player_idPlayer) values(?,?,?,?,?,   ?,?,?)";
+        String sql = "INSERT INTO Avatar (idAvatar,nome,raca,classe,forca,destreza,inteligencia,Player_idPlayer) values(?,?,?,?,?,   ?,?,?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, p.idAvatar);
@@ -19,7 +19,7 @@ public class AvatarDAO extends ConectionDAO{
             pst.setString(3, p.raca);
             pst.setString(4, p.classe);
             pst.setInt(5, p.forca);
-            pst.setInt(6, p.inteligencia);
+            pst.setInt(6, p.destreza);
             pst.setInt(7, p.inteligencia);
             pst.setInt(8, p.Player_idPlayer);
             pst.execute();
@@ -40,14 +40,14 @@ public class AvatarDAO extends ConectionDAO{
 
     public boolean atualizarAvatar(int id, Avatar p) {
         connectToDB();
-        String sql = "UPDATE Avatar SET nome=?,raca=?,classe=?,forca=?,inteligencia=?,destreza=?,Player_idPlayer=? where idAvatar=?";
+        String sql = "UPDATE Avatar SET nome=?,raca=?,classe=?,forca=?,destreza=?,inteligencia=?,Player_idPlayer=? where idAvatar=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1, p.nome);
             pst.setString(2, p.raca);
             pst.setString(3, p.classe);
             pst.setInt(4, p.forca);
-            pst.setInt(5, p.inteligencia);
+            pst.setInt(5, p.destreza);
             pst.setInt(6, p.inteligencia);
             pst.setInt(7, p.Player_idPlayer);
             pst.setInt(8, id);

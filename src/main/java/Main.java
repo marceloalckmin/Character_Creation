@@ -135,6 +135,7 @@ public class Main {
                     Avatar aAux = new Avatar();
                     System.out.println("Entre com as informações do avatar a ser criado:");
                     System.out.print("Nome: ");
+                    entrada.nextLine();
                     aAux.nome = entrada.nextLine();
                     System.out.print("Raça: ");
                     aAux.raca = entrada.nextLine();
@@ -211,7 +212,9 @@ public class Main {
                     System.out.print("Digite o ID do player a ser atualizado: ");
                     int id = entrada.nextInt();
                     entrada.nextLine();
+                    System.out.print("Nome: ");
                     p3.nome = entrada.nextLine();
+                    System.out.print("Senha: ");
                     p3.senha = entrada.nextInt();
                     p3.idPlayer = id;
                     pDao.atualizarPersonagem(id, p3);
@@ -221,18 +224,27 @@ public class Main {
                     Avatar a7 = new Avatar();
                     System.out.print("Digite o ID do jogador que possui o avatar a ser atualizado: ");
                     a7.Player_idPlayer = entrada.nextInt();
-                    System.out.println("Agora, o ID do avatar que deseja apagar: ");
+                    System.out.print("Agora, o ID do avatar que deseja atualizar: ");
                     int idAv = entrada.nextInt();
                     entrada.nextLine();
-                    a7.nome = "Scorpion";
-                    a7.raca= "Humano";
-                    a7.forca = 10;
-                    a7.destreza = 10;
-                    a7.inteligencia = 10;
-                    a7.classe= "Ninja";
+                    System.out.println("Agora, entre novamente com os dados do avatar :) ");
+                    System.out.print("Nome: ");
+                    a7.nome = entrada.nextLine();
+                    System.out.print("Raça: ");
+                    a7.raca= entrada.nextLine();
+                    System.out.print("Classe: ");
+                    a7.classe= entrada.nextLine();
+                    System.out.print("Força: ");
+                    a7.forca = entrada.nextInt();
+                    System.out.print("Destreza: ");
+                    a7.destreza = entrada.nextInt();
+                    System.out.print("Inteligência: ");
+                    a7.inteligencia = entrada.nextInt();
                     //CASO DÊ PROBLEMA EM QUALQUER UM, SEGUIR O EXEMPLO ABAIXO NESSA PORRA\/\/\/\/\/\/\/\/\/\/\/
                    //                                                               a7.Player_idPlayer = pAux.idPlayer;
+                    System.out.println("Pronto, avatar atualizado!");
                     aDao.atualizarAvatar(idAv,a7);
+
                     break;
                 //Informações dos Servers
                 case 10:
