@@ -1,0 +1,108 @@
+-- MySQL Workbench Forward Engineering
+
+#drop database mydb;
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Player`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Player` (
+  `idPlayer` INT NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  `senha` INT NOT NULL,
+  PRIMARY KEY (`idPlayer`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Avatar`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Avatar` (
+  `idAvatar` INT NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  `raca` VARCHAR(45) NOT NULL,
+  `classe` VARCHAR(45) NOT NULL,
+  `forca` INT NOT NULL,
+  `inteligencia` INT NOT NULL,
+  `destreza` INT NOT NULL,
+  `Player_idPlayer` INT NOT NULL,
+  PRIMARY KEY (`idAvatar`),
+  INDEX `fk_Personagem_Player1_idx` (`Player_idPlayer` ASC) VISIBLE,
+  CONSTRAINT `fk_Personagem_Player1`
+    FOREIGN KEY (`Player_idPlayer`)
+    REFERENCES `mydb`.`Player` (`idPlayer`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Token`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Token` (
+  `idToken` INT NOT NULL,
+  `token` INT NOT NULL,
+  `Player_idPlayer` INT NOT NULL,
+  PRIMARY KEY (`idToken`),
+  INDEX `fk_Token_Player1_idx` (`Player_idPlayer` ASC) VISIBLE,
+  CONSTRAINT `fk_Token_Player1`
+    FOREIGN KEY (`Player_idPlayer`)
+    REFERENCES `mydb`.`Player` (`idPlayer`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Servers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Servers` (
+  `idServers` INT NOT NULL,
+  `regiao` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idServers`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Servers_has_Player`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Servers_has_Player` (
+  `Servers_idServers` INT NOT NULL,
+  `Player_idPlayer` INT NOT NULL,
+  PRIMARY KEY (`Servers_idServers`, `Player_idPlayer`),
+  INDEX `fk_Servers_has_Player_Player1_idx` (`Player_idPlayer` ASC) VISIBLE,
+  INDEX `fk_Servers_has_Player_Servers1_idx` (`Servers_idServers` ASC) VISIBLE,
+  CONSTRAINT `fk_Servers_has_Player_Servers1`
+    FOREIGN KEY (`Servers_idServers`)
+    REFERENCES `mydb`.`Servers` (`idServers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Servers_has_Player_Player1`
+    FOREIGN KEY (`Player_idPlayer`)
+    REFERENCES `mydb`.`Player` (`idPlayer`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+SELECT * FROM Avatar;
+SELECT * FROM Player;
+SELECT * FROM Token;
+SELECT * FROM Servers;
