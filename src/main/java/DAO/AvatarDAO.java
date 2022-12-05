@@ -105,14 +105,14 @@ public class AvatarDAO extends ConectionDAO{
                 avatarAux.inteligencia = rs.getInt("inteligencia");
                 avatarAux.destreza = rs.getInt("destreza");
                 avatarAux.Player_idPlayer = rs.getInt("Player_idPlayer");
-                System.out.println("idPersonagem = " + avatarAux.idAvatar);
+                System.out.println("ID do Avatar = " + avatarAux.idAvatar);
                 System.out.println("nome = " + avatarAux.nome);
                 System.out.println("raça = " + avatarAux.raca);
+                System.out.println("classe = " + avatarAux.classe);
                 System.out.println("Força = " + avatarAux.forca);
                 System.out.println("Destreza = " + avatarAux.destreza);
                 System.out.println("Inteligencia = " + avatarAux.inteligencia);
-                System.out.println("classe = " + avatarAux.classe);
-                System.out.println("Player_idPlayer = " + avatarAux.Player_idPlayer);
+                System.out.println("ID do jogador que o possui = " + avatarAux.Player_idPlayer);
                 System.out.println("--------------------------------");
                 listaDeAvatares.add(avatarAux);
             }

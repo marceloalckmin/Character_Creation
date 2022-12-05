@@ -7,9 +7,10 @@ import br.inatel.cdg.Player;
 import br.inatel.cdg.Servers;
 import br.inatel.cdg.Token;
 
+
 import java.sql.SQLOutput;
 import java.util.Scanner;
-
+// Kayky Peres 177 e Marcelo Alckmin 119
 @SuppressWarnings("ALL")
 public class Main {
     public static void main(String[] args) {
@@ -17,28 +18,24 @@ public class Main {
         Avatar a2 = new Avatar();
         Avatar a3 = new Avatar();
         Avatar a4 = new Avatar();
-        Avatar a5 = new Avatar();
         Avatar a6 = new Avatar();
         AvatarDAO aDao = new AvatarDAO();
         Player p1 = new Player();
         Player p2 =new Player();
         PlayerDAO pDao = new PlayerDAO();
-        TokenDAO tDao= new TokenDAO();
-        Token t1 = new Token();
-        Token t2 = new Token();
         ServerDAO sDao = new ServerDAO();
         Servers s1 = new Servers();
         Servers s2 = new Servers();
 
         //Criando personagens, usuarios, tokens e servidores para não começar o banco do zero, como se já tivessem jogadores no jogo
         //player1
-        p1.nome = "monark";
+        p1.nome = "Kayky";
         p1.senha=1109;
         p1.idPlayer = 11;
         //player2
-        p2.nome="xinxa";
-        p2.senha=2469;
-        p2.idPlayer=24;
+        p2.nome="Marcelo";
+        p2.senha = 2469;
+        p2.idPlayer = 420;
         pDao.inserirPersonagem(p1);
         pDao.inserirPersonagem(p2);
         a1.nome= "Legolas";
@@ -85,10 +82,6 @@ public class Main {
         a6.classe= "Arqueiro";
         a6.Player_idPlayer = p2.idPlayer;
         aDao.inserirAvatar(a6);
-        t1.token = 201212;
-        tDao.inserirToken(t1);
-        t2.token = 23457;
-        tDao.inserirToken(t2);
         s1.regiao = "Brasil";
         sDao.inserirSevers(s1);
         s2.idServers = 1;
@@ -122,11 +115,14 @@ public class Main {
                 //Criação de Jogadores
                 case 1:
                     Player pAux = new Player();
-                    System.out.println("Entre com o ID do jogador, seu nome de usuario e senha: ");
+                    System.out.println("Entre com o ID do jogador: ");
                     // Este id é usado para reconhecer a que jogador pertence um avatar quando ele é inserido no banco de dados, já que um jogador
                     // pode possuir mais de um avatar
                     pAux.idPlayer = entrada.nextInt();
-                    pAux.nome=entrada.next();
+                    System.out.print("Entre agora com o nome de usuario: ");
+                    entrada.nextLine();
+                    pAux.nome=entrada.nextLine();
+                    System.out.print("Entre agora com sua senha (só números): ");
                     pAux.senha=entrada.nextInt();
                     PlayerDAO pd = new PlayerDAO();
                     pd.inserirPersonagem(pAux);
@@ -143,7 +139,8 @@ public class Main {
                     System.out.print("Classe: ");
                     aAux.classe = entrada.nextLine();
 
-                    /* Como é um sistema de criação de personagem e só existem 3 atributos base, o máximo de pontos de atributo será 30
+                    /*
+                    Como é um sistema de criação de personagem e só existem 3 atributos base, o máximo de pontos de atributo será 30
                     caso passe de 30, é pedido para que o usuario entre novamente com os atributos
                      */
                     boolean boolAcha = true;
@@ -175,6 +172,7 @@ public class Main {
                     break;
                 //Criação de Token
                 case 3:
+                    TokenDAO tDao = new TokenDAO();
                     Token tAux = new Token();
                     System.out.println("================== IMPORTANTE ==================");
                     System.out.println(" Anote o seu token em um lugar seguro ");
@@ -196,6 +194,7 @@ public class Main {
                     System.out.print("Digite o ID do server a ser adicionado: ");
                     sAux.idServers = entrada.nextInt();
                     System.out.print("Digite o nome da região do servidor: ");
+                    entrada.nextLine();
                     sAux.regiao = entrada.nextLine();
                     sDao.inserirSevers(sAux);
                     break;
